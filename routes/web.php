@@ -22,7 +22,19 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('articles','ArticlesController');
-Route::get('/','WelcomeController@index');
+
+// Route::get('/','WelcomeController@index');
+// lab
+
+Route::get('/post/{postId?}',function($postId = 6){
+  return $postId;
+})->name('posts');
+
+
+Route::get('/test', 'TestController@index');
+
+Route::get('/user{id}', 'UserController@show');
+// endlab
 
 Route::get('auth/login',function(){
   $credentials = [
@@ -45,22 +57,6 @@ Route::get('auth/logout',function(){
   auth()->logout();
   return '또 봐요~';
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
