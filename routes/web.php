@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //   ]);
 // });
 
-Route::resource('articles','ArticlesController');
+// Route::resource('articles','ArticlesController');
 
 // Route::get('/','WelcomeController@index');
 // lab
@@ -33,8 +33,30 @@ Route::get('/post/{postId?}',function($postId = 6){
 
 Route::get('/test', 'TestController@index');
 
-Route::get('/user{id}', 'UserController@show');
+Route::get('/user/{id}', 'UserController@show');
+
+Route::resource('user.post', 'PostController');
 // endlab
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('auth/login',function(){
   $credentials = [
