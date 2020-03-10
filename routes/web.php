@@ -21,65 +21,7 @@ use Illuminate\Support\Facades\Route;
 //   ]);
 // });
 
-// Route::resource('articles','ArticlesController');
-
-// Route::get('/','WelcomeController@index');
-// lab
-
-Route::get('/post/{postId?}',function($postId = 6){
-  return $postId;
-})->name('posts');
-
-
-Route::get('/test', 'TestController@index');
-
-Route::get('/user/{id}', 'UserController@show');
-
-Route::resource('user.post', 'PostController');
-// endlab
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('auth/login',function(){
-  $credentials = [
-    'email' => 'john@example.com',
-    'password' => 'password'
-  ];
-
-  if(!auth()->attempt($credentials)){
-    return '로그인 정보가 정확하지 않습니다';
-  }
-  return redirect('protected');
+Route::get('/', function(){
+  return view('welcome');
 });
-
-Route::get('protected',['middleware' => 'auth', function(){
-  dump(session()->all());
-  return '어서오세요'. auth()->user()->name;
-}]);
-
-Route::get('auth/logout',function(){
-  auth()->logout();
-  return '또 봐요~';
-});
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
