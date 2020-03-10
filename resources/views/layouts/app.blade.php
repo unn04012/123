@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style media="screen">
+      .text-center{
+        position  : absolute;
+        left : 50%;
+        transform:translateX(-50%);
+      }
+    </style>
 </head>
 <body>
     <div id="app">

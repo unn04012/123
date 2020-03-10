@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller
 {
     public function index(){
-      $articles = \App\Article::get();
-
+      $articles = \App\Article::latest()->paginate(3);
+      $articles->load('user');
       return view('articles.index',compact('articles'));
     }
 
@@ -16,25 +16,25 @@ class ArticlesController extends Controller
       return view('articles.create');
     }
 
-    public function store(Request $request){
-      $rules = [
-        'title' => ['required'],
-        'content' => ['required', 'min:10'],
-      ];
-
-      $validator = \Validator::make($request->all(), $rules);
-
-      if($validator->fails()){
-        return back()->withErrors($validator)
-                     -> withInput();
-      }
-
-      $article = \App\User::find(1)->articles()
-                                   -> create($request->all());
-
-      if(! $article){
-        return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
-      }
-      return redirect(route('articles.index'))->with('flash_meggate','작성하신 글이 저장되었습니다.');
-    }
+    // public function store(Request $request){
+    //   $rules = [
+    //     'title' => ['required'],
+    //     'content' => ['required', 'min:10'],
+    //   ];
+    //
+    //   $validator = \Validator::make($request->all(), $rules);
+    //
+    //   if($validator->fails()){
+    //     return back()->withErrors($validator)
+    //                  -> withInput();
+    //   }
+    //
+    //   $article = \App\User::find(1)->articles()
+    //                                -> create($request->all());
+    //
+    //   if(! $article){
+    //     return back()->with('flash_message', '글이 저장되지 않았습니다.')->withInput();
+    //   }
+    //   return redirect(route('articles.index'))->with('flash_meggate','작성하신 글이 저장되었습니다.');
+    // }
 }
