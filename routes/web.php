@@ -24,8 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
   return view('welcome');
 });
+Auth::routes();
 Route::resource('articles','ArticlesController');
 // DB::listen(function ($query){
 //   var_dump($query->sql);
 // });
-Auth::routes();
+
+
+// Event::listen('article.created', function($article){
+//   var_dump('이벤트를 받았습니다. 받은 데이터상태는 다음과 같습니다');
+//   var_dump($article->toArray());
+// });
